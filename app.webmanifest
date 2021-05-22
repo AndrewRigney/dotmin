@@ -1,0 +1,14 @@
+{
+    "name": "dotmin",
+    "short_name": "dotmin",
+    "lang": "en",
+    "start_url": "/index.html",
+    "display": "fullscreen",
+    "theme_color": "#88C537",
+    "icons": [
+        {
+            "src": "ico/favicon.png",
+            "sizes": "16x16"
+        }
+    ]
+}
