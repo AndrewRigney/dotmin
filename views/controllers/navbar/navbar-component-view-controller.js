@@ -1,7 +1,6 @@
 var init = function () {
     var page = $.getPageName();
 
-    $("ul.nav li a").removeClass("active");
-    var $menuItem = $("ul.nav li").find("a[href*='" + page + "']");
-    $menuItem.parent().addClass("active");
+    $("ul.navbar-nav li a").removeClass("active");
+    $("ul.navbar-nav li").find("a[href*='" + page + "']").addClass("active");
 };

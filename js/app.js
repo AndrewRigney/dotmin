@@ -11,8 +11,8 @@ var app = {
         "suffix_views": "-view-controller.min.js"
     },
     routes: [
-        { name: "portfolio-summary", path: "portfolio.html" },
-        { name: "portfolio-detail", path: "portfolio-detail.html" },
+        { name: "child1", path: "child1.html" },
+        { name: "child2", path: "child2.html" },
         { name: "default", path: "*" }
     ],
     components: [
@@ -25,13 +25,6 @@ var app = {
 const buildTargets = {
     DEVEL: "Development",
     PROD: "Production"
-};
-
-const sizes = {
-    SMALL: 200,
-    MEDIUM: 270,
-    LARGE: 500,
-    COMMERCIAL: 999999
 };
 
 //App controller
