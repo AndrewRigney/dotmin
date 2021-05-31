@@ -28,24 +28,7 @@ const buildTargets = {
 };
 
 //App controller
-$(function () {
-    $.loadScript(app.config.folder_services + "core" + app.config.suffix_services, function () {
-        $.initRoute(app.config.folder_controllers + $.getRoute() + app.config.suffix_controllers, function () {
-            init();
-        });
+dotmin.ready(() => {
+    dotmin.initRoute(app.config.folder_controllers + dotmin.getRoute() + app.config.suffix_controllers, 
+    null);
     });
-});
-
-jQuery.ajax({
-    cache: true
-});
-
-//Service methods
-jQuery.loadScript = function (url, callback) {
-    jQuery.ajax({
-        url: url,
-        dataType: 'script',
-        success: callback,
-        async: true
-    });
-};
