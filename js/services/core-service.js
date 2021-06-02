@@ -1,39 +1,36 @@
 var dotmin = {
-    ready = (callback) => {
+    ready: (callback) => {
         if (document.readyState != "loading") callback();
         else document.addEventListener("DOMContentLoaded", callback);
     },
-    loadScript = function (url, callback) {
+    loadScript: function (url, callback) {
         fetch(url)
-            .then(data => {
-                init();
+            .then(data => data.text()).then(data => {
+                eval(data);
+                eval(callback);
             }).catch(error => {
-                // Handle error
-                alert("Error loading script");
                 console.error(error);
             });
     },
-    initRoute = function (url, callback) {
+    initRoute: function (url, callback) {
         this.loadScript(url, callback);
     },
-    initComponent = function (url, callback) {
+    initComponent: function (url, callback) {
         this.loadScript(url, callback);
     },
-    getRoute = function () {
+    getRoute: function () {
         var location = window.location.href.toString();
-        var currentRoute = "default";
+        var currentRoute = app.config.default_route;
 
-        for (var i = 0; i < app.routes.length; i++) {
-            var route = app.routes[i];
-            if (location.indexOf(route.path) !== -1) {
-                currentRoute = route.name;
-                break;
+        app.routes.forEach(element => {
+            if (location.indexOf(element.path) !== -1) {
+                currentRoute = element.name;
             }
-        }
+        });
 
         return currentRoute;
     },
-    getPageName = function () {
+    getPageName: function () {
         var locations = window.location.href.toString().split("/");
         var name = locations[locations.length - 1];
 
@@ -43,7 +40,7 @@ var dotmin = {
 
         return name;
     },
-    getUrlParameter = function (name) {
+    getUrlParameter: function (name) {
         name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
 
         var regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
@@ -53,14 +50,27 @@ var dotmin = {
             ? ""
             : decodeURIComponent(results[1].replace(/\+/g, " "));
     },
-    loadComponent = function (name) {
+    getViewController: function (name) {
+        var n = name.split("-");
+        name = n[0];
+        n.forEach((element, index) => {
+            if (index > 0) {
+                name += (element.charAt(0).toUpperCase() + element.slice(1).toLowerCase());
+            }
+        });
+
+        return name += app.config.view_controller_object;
+    },
+    loadComponent: function (name) {
         var component = _.findWhere(app.components, { name: name });
 
         fetch("/views/" + component.path + name + ".html")
             .then(data => data.text()).then(data => {
                 document.querySelector(name).innerHTML = data;
             }).catch(error => {
-                // Handle error
+                console.error(error);
             });
+
+        this.loadScript(app.config.folder_views + component.path + name + app.config.suffix_views, this.getViewController(name) + ".init()");
     }
 };

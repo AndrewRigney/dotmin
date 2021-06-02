@@ -8,7 +8,9 @@ var app = {
         "folder_services": "js/services/",
         "suffix_services": "-service.min.js",
         "folder_views": "views/controllers/",
-        "suffix_views": "-view-controller.min.js"
+        "suffix_views": "-view-controller.min.js",
+        "view_controller_object": "ViewController",
+        "default_route": "default"
     },
     routes: [
         { name: "child1", path: "child1.html" },
@@ -29,6 +31,5 @@ const buildTargets = {
 
 //App controller
 dotmin.ready(() => {
-    dotmin.initRoute(app.config.folder_controllers + dotmin.getRoute() + app.config.suffix_controllers, 
-    null);
-    });
+    dotmin.initRoute(app.config.folder_controllers + dotmin.getRoute() + app.config.suffix_controllers, "pageController.init()");
+});

@@ -1,3 +1,5 @@
-var init = function () {
-    //noop
-};
+var footerComponentViewController = {
+    init: function () {
+        //noop
+    }
+}
