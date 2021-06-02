@@ -3,6 +3,9 @@ var dotmin = {
         if (document.readyState != "loading") callback();
         else document.addEventListener("DOMContentLoaded", callback);
     },
+    require: function(url) {
+        this.loadScript(url, null);
+    },
     loadScript: function (url, callback) {
         fetch(url)
             .then(data => data.text()).then(data => {

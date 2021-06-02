@@ -1,7 +1,13 @@
+//Enums
+const buildTargets = {
+    DEVEL: "Development",
+    PROD: "Production"
+};
+
 //App info
 var app = {
     version: "1.2.2019.031020191530",
-    debug: false,
+    target: buildTargets.DEVEL,
     config: {
         "folder_controllers": "js/controllers/",
         "suffix_controllers": "-controller.min.js",
@@ -23,13 +29,15 @@ var app = {
     ]
 };
 
-//Enums
-const buildTargets = {
-    DEVEL: "Development",
-    PROD: "Production"
-};
+//App depedencies
+dotmin.require("js/vendor/bootstrap.min.js");
+dotmin.require("js/vendor/underscore-umd-min.js");
 
 //App controller
 dotmin.ready(() => {
     dotmin.initRoute(app.config.folder_controllers + dotmin.getRoute() + app.config.suffix_controllers, "pageController.init()");
+    if (app.target === buildTargets.PROD) {
+        console.log = function() {};
+        console.info = function() {};
+    }
 });
