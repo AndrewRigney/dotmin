@@ -19,9 +19,10 @@ var app = {
         "default_route": "default"
     },
     routes: [
-        { name: "child1", path: "child1.html" },
-        { name: "child2", path: "child2.html" },
-        { name: "default", path: "*" }
+        { name: "child1", path: "child1.html", controller: "child1" },
+        { name: "child2", path: "child2.html", controller: "child12" },
+        { name: "index", path: "index.html", controller: "default" },
+        { name: "default", path: "index.html", controller: "default" }
     ],
     components: [
         { name: "navbar-component", path: "navbar/" },
@@ -31,11 +32,10 @@ var app = {
 
 //App depedencies
 dotmin.require("js/vendor/bootstrap.min.js");
-dotmin.require("js/vendor/underscore-umd-min.js");
 
 //App controller
 dotmin.ready(() => {
-    dotmin.initRoute(app.config.folder_controllers + dotmin.getRoute() + app.config.suffix_controllers, "pageController.init()");
+    dotmin.initRoute(app.config.folder_controllers + dotmin.getRoute().controller + app.config.suffix_controllers, "pageController.init()");
     if (app.target === buildTargets.PROD) {
         console.log = function() {};
         console.info = function() {};

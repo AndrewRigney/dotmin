@@ -1,4 +1,9 @@
 var gulp = require('gulp');
+var del = require('del');
+
+function clean() {
+    return del(['public']);
+};
 
 function html() {
     return gulp.src('*.html')
@@ -45,4 +50,4 @@ function artwork() {
         .pipe(gulp.dest('public/artwork'))
 };
 
-exports.default = gulp.parallel(html, manifest, sw, css, js, views, ico, img, artwork);
+exports.default = gulp.series(clean, gulp.parallel(html, manifest, sw, css, js, views, ico, img, artwork));

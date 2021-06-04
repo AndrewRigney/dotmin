@@ -1,14 +1,19 @@
 var navbarComponentViewController = {
     init: function () {
-        var page = dotmin.getPageName();
+        var page = dotmin.getRoute();
 
         var navItemLink = document.querySelector("ul.navbar-nav li a");
-        navItemLink.classList.remove("active");
+        if (navItemLink !== null) {
+            navItemLink.classList.remove("active");
+        }
+
         var navItemLinks = document.querySelectorAll("ul.navbar-nav li a");
-        navItemLinks.forEach(element => {
-            if (element.getAttribute("href") == page) {
-                element.classList.add("active");
-            }
-        });
+        if (navItemLinks !== null) {
+            navItemLinks.forEach(element => {
+                if (element.getAttribute("href") == page.path) {
+                    element.classList.add("active");
+                }
+            });
+        }
     }
 }

@@ -23,11 +23,11 @@ var dotmin = {
     },
     getRoute: function () {
         var location = window.location.href.toString();
-        var currentRoute = app.config.default_route;
+        var currentRoute = app.routes.find(function (c) { return c.name === app.config.default_route; });
 
         app.routes.forEach(element => {
             if (location.indexOf(element.path) !== -1) {
-                currentRoute = element.name;
+                currentRoute = element;
             }
         });
 
@@ -65,7 +65,7 @@ var dotmin = {
         return name += app.config.view_controller_object;
     },
     loadComponent: function (name) {
-        var component = _.findWhere(app.components, { name: name });
+        var component = app.components.find(function (c) { return c.name == name; });
 
         fetch("/views/" + component.path + name + ".html")
             .then(data => data.text()).then(data => {
