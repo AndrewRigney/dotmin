@@ -12,13 +12,13 @@
             "sizes": "16x16"
         },
         {
+            "src": "artwork/apple-touch-192x192.png",
+            "sizes": "192x192"
+        },
+        {
             "src": "artwork/splash-512x512.png",
             "sizes": "512x512",
             "purpose": "maskable"
-        },
-        {
-            "src": "artwork/apple-touch-192x192.png",
-            "sizes": "192x192"
         }
     ]
 }
