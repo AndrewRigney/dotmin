@@ -38,6 +38,11 @@ function views() {
         .pipe(gulp.dest('public/views'))
 };
 
+function models() {
+    return gulp.src('models/**/*.min.js')
+        .pipe(gulp.dest('public/models'))
+};
+
 function ico() {
     return gulp.src('ico/**/*.*')
         .pipe(gulp.dest('public/ico'))
@@ -61,4 +66,4 @@ function setProductionBuildTarget() {
 };
 //End series
 
-exports.default = gulp.series(clean, gulp.parallel(html, manifest, sw, css, js, views, ico, img, artwork), setProductionBuildTarget);
+exports.default = gulp.series(clean, gulp.parallel(html, manifest, sw, css, js, views, models, ico, img, artwork), setProductionBuildTarget);
