@@ -4,4 +4,4 @@ var pageController = {
         dotmin.loadComponent("navbar-component");
         dotmin.loadComponent("footer-component");
     }
-}
+};

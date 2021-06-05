@@ -9,12 +9,15 @@ var app = {
     version: "1.2.2019.031020191530",
     target: buildTargets.DEVEL,
     config: {
-        "folder_controllers": "js/controllers/",
-        "suffix_controllers": "-controller.min.js",
         "folder_services": "js/services/",
         "suffix_services": "-service.min.js",
+        "folder_models": "js/models/",
+        "suffix_models": "-model.min.js",
+        "view_model_object": "Model",
         "folder_views": "views/controllers/",
         "suffix_views": "-view-controller.min.js",
+        "folder_controllers": "js/controllers/",
+        "suffix_controllers": "-controller.min.js",
         "view_controller_object": "ViewController",
         "default_route": "default"
     },

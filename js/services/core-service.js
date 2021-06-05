@@ -21,6 +21,9 @@ var dotmin = {
     initComponent: function (url, callback) {
         this.loadScript(url, callback);
     },
+    loadModel: function (name, callback) {
+        this.loadScript(app.config.folder_models + name + app.config.suffix_models, callback);
+    },
     getRoute: function () {
         var location = window.location.href.toString();
         var currentRoute = app.routes.find(function (c) { return c.name === app.config.default_route; });
@@ -64,6 +67,17 @@ var dotmin = {
 
         return name += app.config.view_controller_object;
     },
+    getViewModel: function (name) {
+        var n = name.split("-");
+        name = n[0];
+        n.forEach((element, index) => {
+            if (index > 0) {
+                name += (element.charAt(0).toUpperCase() + element.slice(1).toLowerCase());
+            }
+        });
+
+        return name += app.config.view_model_object;
+    },
     loadComponent: function (name) {
         var component = app.components.find(function (c) { return c.name == name; });
 
@@ -75,5 +89,13 @@ var dotmin = {
             });
 
         this.loadScript(app.config.folder_views + component.path + name + app.config.suffix_views, this.getViewController(name) + ".init()");
+    },
+    on: function (id, action, response) {
+        let elem = document.querySelector(id);
+        elem.addEventListener(action, response);
+    },
+    off: function (id, action, response) {
+        let elem = document.querySelector(id);
+        elem.removeEventListener(action, response);
     }
 };
