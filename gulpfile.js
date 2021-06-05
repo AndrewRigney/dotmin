@@ -1,10 +1,13 @@
 var gulp = require('gulp');
 var del = require('del');
+var replace = require('gulp-replace');
 
+//Start series
 function clean() {
     return del(['public']);
 };
 
+//Start parallel
 function html() {
     return gulp.src('*.html')
         .pipe(gulp.dest('public'));
@@ -49,5 +52,13 @@ function artwork() {
     return gulp.src('artwork/**/*.*')
         .pipe(gulp.dest('public/artwork'))
 };
+//End parallel
 
-exports.default = gulp.series(clean, gulp.parallel(html, manifest, sw, css, js, views, ico, img, artwork));
+function setProductionBuildTarget() {
+    return gulp.src(['js/app.min.js'])
+        .pipe(replace('target:buildTargets.DEVEL', 'target:buildTargets.PROD'))
+        .pipe(gulp.dest('public/js'));
+};
+//End series
+
+exports.default = gulp.series(clean, gulp.parallel(html, manifest, sw, css, js, views, ico, img, artwork), setProductionBuildTarget);
