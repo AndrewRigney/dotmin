@@ -12,7 +12,7 @@ Miniscule JavaSript app framework
 ## Build
 gulp will deploy production files to *public* and set the buildTarget to PROD which suppresses console.log() & console.info() output
 
-#Demo
+## Demo
  - https://dotmin-pwa.web.app/
 
 ### Resources
