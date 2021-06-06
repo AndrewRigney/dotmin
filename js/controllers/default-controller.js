@@ -7,6 +7,7 @@ var pageController = {
                 document.getElementById("slide1_h1").textContent = defaultModel.greeting;
                 document.getElementById("slide1_p").textContent = defaultModel.copy;
                 document.getElementById("slide1_cta").textContent = defaultModel.cta;
+                document.getElementById("slide1_cta").setAttribute("href", defaultModel.ctaLink);
             })();`
         );
         
@@ -15,4 +16,3 @@ var pageController = {
         dotmin.loadComponent("footer-component");
     }   
 };
-
