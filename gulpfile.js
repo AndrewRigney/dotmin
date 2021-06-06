@@ -1,6 +1,7 @@
 var gulp = require('gulp');
 var del = require('del');
 var replace = require('gulp-replace');
+var htmlmin = require('gulp-htmlmin');
 
 //Start series
 function clean() {
@@ -10,6 +11,13 @@ function clean() {
 //Start parallel
 function html() {
     return gulp.src('*.html')
+        .pipe(htmlmin({
+            collapseWhitespace: true,
+            useShortDoctype: true,
+            removeComments: true,
+            minifyCSS: true
+        }
+        ))
         .pipe(gulp.dest('public'));
 };
 
@@ -67,3 +75,4 @@ function setProductionBuildTarget() {
 //End series
 
 exports.default = gulp.series(clean, gulp.parallel(html, manifest, sw, css, js, views, models, ico, img, artwork), setProductionBuildTarget);
+exports.html = gulp.series(html);

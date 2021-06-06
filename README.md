@@ -1,6 +1,9 @@
 # dotmin
 Miniscule JavaSript app framework
 
+## Demo
+ - https://dotmin-pwa.web.app/
+ 
 ## Dependencies
 ### gulp
 `npm install gulp --global`
@@ -8,12 +11,11 @@ Miniscule JavaSript app framework
 `npm install --save-dev gulp del`
 ### gulp-replace
 `npm install --save-dev gulp-replace`
+### gulp-htmlmin
+`npm install --save-dev gulp gulp-htmlmin`
 
 ## Build
 gulp will deploy production files to *public* and set the buildTarget to PROD which suppresses console.log() & console.info() output
-
-## Demo
- - https://dotmin-pwa.web.app/
 
 ### Resources
 - https://webdesign.tutsplus.com/articles/essential-cheat-sheet-convert-jquery-to-javascript--cms-35633
