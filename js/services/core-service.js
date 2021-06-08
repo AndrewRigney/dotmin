@@ -92,10 +92,10 @@ var dotmin = {
     },
     on: (id, action, response) => {
         let elem = document.querySelector(id);
-        elem.addEventListener(action, response);
+        if (elem !== null) elem.addEventListener(action, response);
     },
     off: (id, action, response) => {
         let elem = document.querySelector(id);
-        elem.removeEventListener(action, response);
+        if (elem !== null) elem.removeEventListener(action, response);
     }
 };
