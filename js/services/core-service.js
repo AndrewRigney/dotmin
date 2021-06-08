@@ -3,10 +3,10 @@ var dotmin = {
         if (document.readyState != "loading") callback();
         else document.addEventListener("DOMContentLoaded", callback);
     },
-    require: function(url) {
-        this.loadScript(url, null);
+    require: (url) => {
+        dotmin.loadScript(url, null);
     },
-    loadScript: function (url, callback) {
+    loadScript: (url, callback) => {
         fetch(url)
             .then(data => data.text()).then(data => {
                 eval(data);
@@ -15,18 +15,18 @@ var dotmin = {
                 console.error(error);
             });
     },
-    initRoute: function (url, callback) {
-        this.loadScript(url, callback);
+    initRoute: (url, callback) => {
+        dotmin.loadScript(url, callback);
     },
-    initComponent: function (url, callback) {
-        this.loadScript(url, callback);
+    initComponent: (url, callback) => {
+        dotmin.loadScript(url, callback);
     },
-    loadModel: function (name, callback) {
-        this.loadScript(app.config.folder_models + name + app.config.suffix_models, callback);
+    loadModel: (name, callback) => {
+        dotmin.loadScript(app.config.folder_models + name + app.config.suffix_models, callback);
     },
-    getRoute: function () {
+    getRoute: () => {
         var location = window.location.href.toString();
-        var currentRoute = app.routes.find(function (c) { return c.name === app.config.default_route; });
+        var currentRoute = app.routes.find((c) => { return c.name === app.config.default_route; });
 
         app.routes.forEach(element => {
             if (location.indexOf(element.path) !== -1) {
@@ -36,7 +36,7 @@ var dotmin = {
 
         return currentRoute;
     },
-    getPageName: function () {
+    getPageName: () => {
         var locations = window.location.href.toString().split("/");
         var name = locations[locations.length - 1];
 
@@ -46,7 +46,7 @@ var dotmin = {
 
         return name;
     },
-    getUrlParameter: function (name) {
+    getUrlParameter: (name) => {
         name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
 
         var regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
@@ -56,7 +56,7 @@ var dotmin = {
             ? ""
             : decodeURIComponent(results[1].replace(/\+/g, " "));
     },
-    getViewController: function (name) {
+    getViewController: (name) => {
         var n = name.split("-");
         name = n[0];
         n.forEach((element, index) => {
@@ -67,7 +67,7 @@ var dotmin = {
 
         return name += app.config.view_controller_object;
     },
-    getViewModel: function (name) {
+    getViewModel: (name) => {
         var n = name.split("-");
         name = n[0];
         n.forEach((element, index) => {
@@ -78,7 +78,7 @@ var dotmin = {
 
         return name += app.config.view_model_object;
     },
-    loadComponent: function (name) {
+    loadComponent: (name) => {
         var component = app.components.find(function (c) { return c.name == name; });
 
         fetch("/views/" + component.path + name + ".html")
@@ -88,13 +88,13 @@ var dotmin = {
                 console.error(error);
             });
 
-        this.loadScript(app.config.folder_views + component.path + name + app.config.suffix_views, this.getViewController(name) + ".init()");
+            dotmin.loadScript(app.config.folder_views + component.path + name + app.config.suffix_views, dotmin.getViewController(name) + ".init()");
     },
-    on: function (id, action, response) {
+    on: (id, action, response) => {
         let elem = document.querySelector(id);
         elem.addEventListener(action, response);
     },
-    off: function (id, action, response) {
+    off: (id, action, response) => {
         let elem = document.querySelector(id);
         elem.removeEventListener(action, response);
     }
