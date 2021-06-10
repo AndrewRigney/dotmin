@@ -1,10 +1,10 @@
-var dotmin = {
+var _m = {
     ready: (callback) => {
         if (document.readyState != "loading") callback();
         else document.addEventListener("DOMContentLoaded", callback);
     },
     require: (url) => {
-        dotmin.loadScript(url, null);
+        _m.loadScript(url, null);
     },
     loadScript: (url, callback) => {
         fetch(url)
@@ -16,13 +16,13 @@ var dotmin = {
             });
     },
     initRoute: (url, callback) => {
-        dotmin.loadScript(url, callback);
+        _m.loadScript(url, callback);
     },
     initComponent: (url, callback) => {
-        dotmin.loadScript(url, callback);
+        _m.loadScript(url, callback);
     },
     loadModel: (name, callback) => {
-        dotmin.loadScript(app.config.folder_models + name + app.config.suffix_models, callback);
+        _m.loadScript(app.config.folder_models + name + app.config.suffix_models, callback);
     },
     getRoute: () => {
         var location = window.location.href.toString();
@@ -88,7 +88,7 @@ var dotmin = {
                 console.error(error);
             });
 
-            dotmin.loadScript(app.config.folder_views + component.path + name + app.config.suffix_views, dotmin.getViewController(name) + ".init()");
+            _m.loadScript(app.config.folder_views + component.path + name + app.config.suffix_views, _m.getViewController(name) + ".init()");
     },
     on: (id, action, response) => {
         let elem = document.querySelector(id);

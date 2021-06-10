@@ -1,6 +1,6 @@
 var navbarComponentViewController = {
     init: function () {
-        var page = dotmin.getRoute();
+        var page = _m.getRoute();
 
         var navItemLink = document.querySelector("ul.navbar-nav li a");
         if (navItemLink !== null) {

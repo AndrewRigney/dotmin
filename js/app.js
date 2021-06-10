@@ -34,11 +34,11 @@ var app = {
 };
 
 //App depedencies
-dotmin.require("js/vendor/bootstrap.min.js");
+_m.require("js/vendor/bootstrap.min.js");
 
 //App controller
-dotmin.ready(() => {
-    dotmin.initRoute(app.config.folder_controllers + dotmin.getRoute().controller + app.config.suffix_controllers, "pageController.init()");
+_m.ready(() => {
+    _m.initRoute(app.config.folder_controllers + _m.getRoute().controller + app.config.suffix_controllers, "pageController.init()");
     if (app.target === buildTargets.PROD) {
         console.log = function() {};
         console.info = function() {};

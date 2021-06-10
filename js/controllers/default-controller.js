@@ -2,7 +2,7 @@ var pageController = {
     init: function () { 
         //Load model
         //declare an IIFE as the callback to process the model data
-        dotmin.loadModel("default", `(() => {
+        _m.loadModel("default", `(() => {
                 defaultModel.greeting += "! :)";
                 document.getElementById("slide1_h1").textContent = defaultModel.greeting;
                 document.getElementById("slide1_p").textContent = defaultModel.copy;
@@ -12,7 +12,7 @@ var pageController = {
         );
         
         //Load components
-        dotmin.loadComponent("navbar-component");
-        dotmin.loadComponent("footer-component");
+        _m.loadComponent("navbar-component");
+        _m.loadComponent("footer-component");
     }   
 };
