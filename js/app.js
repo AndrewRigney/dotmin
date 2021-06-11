@@ -29,7 +29,8 @@ var app = {
     ],
     components: [
         { name: "navbar-component", path: "navbar/" },
-        { name: "footer-component", path: "footer/" }
+        { name: "footer-component", path: "footer/" },
+        { name: "theme-picker-component", path: "theme-picker/" }
     ]
 };
 

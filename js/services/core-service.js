@@ -1,7 +1,6 @@
 var _m = {
     ready: (callback) => {
-        if (document.readyState != "loading") callback();
-        else document.addEventListener("DOMContentLoaded", callback);
+        (document.readyState != "loading") ? callback() : document.addEventListener("DOMContentLoaded", callback);
     },
     require: (url) => {
         _m.loadScript(url, null);

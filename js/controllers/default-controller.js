@@ -14,5 +14,6 @@ var pageController = {
         //Load components
         _m.loadComponent("navbar-component");
         _m.loadComponent("footer-component");
+        _m.loadComponent("theme-picker-component");
     }   
 };
