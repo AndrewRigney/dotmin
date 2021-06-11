@@ -8,7 +8,7 @@ var themePickerComponentViewController = {
     lightImg = "./light.png",
     init: () => {
         _m.ready(() => {
-            if (darkMode) {
+            if (themePickerComponentViewController.darkMode) {
                 themePickerComponentViewController.initTheme();
                 _m.on("#darkMode", "change", () => {
                     if (themePickerComponentViewController.darkMode.checked) {
