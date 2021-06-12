@@ -21,7 +21,7 @@ Miniscule JavaSript app framework
 `npm install --save-dev browser-sync`
 
 ## Build
-gulp will deploy production files to *public* and set the buildTarget to PROD which suppresses console.log() & console.info() output
+gulp will deploy production files to */public*
 
 ## Serve
 `gulp serve`
