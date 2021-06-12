@@ -67,3 +67,6 @@ node_modules/
 
 #kanban boad
 .kanbn
+
+#public build
+public/
