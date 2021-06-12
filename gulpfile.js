@@ -1,12 +1,14 @@
 const gulp = require('gulp');
 const del = require('del');
-const replace = require('gulp-replace');
 const htmlmin = require('gulp-htmlmin');
 const postcss = require('gulp-postcss');
 const concat = require('gulp-concat');
 const cssnano = require('cssnano');
 const terser = require('gulp-terser');
 const rename = require('gulp-rename');
+const browserSync = require('browser-sync')
+
+const server = browserSync.create();
 
 //Start series
 function clean() {
@@ -123,4 +125,16 @@ function artwork() {
 //End parallel
 //End series
 
+function serve(done) {
+    server.init({
+      server: {
+        baseDir: './public',
+        https: true,
+        notify: false
+      }
+    });
+    done();
+  }
+
 exports.default = gulp.series(clean, gulp.parallel(html, manifest, sw, css, js, vendorJs, models, views, viewControllers, controllers, ico, img, artwork));
+exports.serve = gulp.series(serve);
