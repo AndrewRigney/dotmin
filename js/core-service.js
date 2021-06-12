@@ -44,6 +44,7 @@ var _m = {
 
         return currentRoute;
     },
+    
     //getPageName()
     gpn: () => {
         var locations = window.location.href.toString().split("/");
