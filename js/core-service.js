@@ -19,6 +19,13 @@ var _m = {
     //initRoute()
     ir: (url, callback) => {
         _m.l(url, callback);
+        _m.ipc();
+    },
+
+    //initPageComponents
+    ipc: () => {
+        let c = document.getElementsByClassName("component");
+        (c !== null) ? Array.from(c).forEach(element => { _m.lc(element.localName); }) : null;
     },
     
     //initComponent()
@@ -37,9 +44,7 @@ var _m = {
         var currentRoute = app.routes.find((c) => { return c.name === app.config.default_route; });
 
         app.routes.forEach(element => {
-            if (location.indexOf(element.path) !== -1) {
-                currentRoute = element;
-            }
+            (location.indexOf(element.path) !== -1) ? currentRoute = element : null;
         });
 
         return currentRoute;

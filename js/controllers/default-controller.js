@@ -10,10 +10,5 @@ var pageController = {
                 document.getElementById("slide1_cta").setAttribute("href", defaultModel.ctaLink);
             })();`
         );
-        
-        //Load components
-        _m.lc("navbar-component");
-        _m.lc("footer-component");
-        _m.lc("theme-picker-component");
     }   
 };
