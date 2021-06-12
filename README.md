@@ -1,5 +1,5 @@
 # dotmin
-Miniscule JavaSript app framework
+Minuscule JavaScript app framework
 
 ## Demo
  - https://dotmin-pwa.web.app/
