@@ -142,7 +142,9 @@ const serve = (done) => {
 const watch = () => {
     gulp.watch('js/*.js', { delay: 1000 }, gulp.series(js, reload));
     gulp.watch('*.html', { delay: 1000 }, gulp.series(html, reload));
-    gulp.watch('js/controllers/**/*.js', { delay: 1000 }, gulp.series(viewControllers, reload));
+    gulp.watch('js/models/**/*.js', { delay: 1000 }, gulp.series(models, reload));
+    gulp.watch('js/controllers/**/*.js', { delay: 1000 }, gulp.series(controllers, reload));
+    gulp.watch('views/controllers/**/*.js', { delay: 1000 }, gulp.series(viewControllers, reload));
     gulp.watch('js/models/**/*.js', { delay: 1000 }, gulp.series(models, reload));
 };
 

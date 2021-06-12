@@ -5,8 +5,8 @@ const buildTargets = {
 };
 
 //App info
-var app = {
-    version: "0.8.2021.06121702",
+const app = {
+    version: "0.8.2021.06130455",
     target: buildTargets.DEVEL,
     config: {
         "folder_services": "js/services/",

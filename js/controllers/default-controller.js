@@ -1,5 +1,5 @@
 var pageController = {
-    init: function () { 
+    init: () => { 
         //Load model
         //declare an IIFE as the callback to process the model data
         _m.lm("default", `(() => {

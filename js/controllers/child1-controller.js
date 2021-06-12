@@ -1,5 +1,5 @@
 var pageController = {
-    init: function () {
+    init: () => {
         //noOp
     }
 };

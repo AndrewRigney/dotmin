@@ -1,5 +1,5 @@
 var navbarComponentViewController = {
-    init: function () {
+    init: () => {
         var page = _m.gr();
 
         var navItemLink = document.querySelector("ul.navbar-nav li a");

@@ -1,11 +1,11 @@
 //dotmin object
-var _m = {
-    //ready()
+const _m = {
+    //ready(function: callback)
     r: (callback) => {
         (document.readyState != "loading") ? callback() : document.addEventListener("DOMContentLoaded", callback);
     },
     
-    //load()
+    //load(string: url, function: callback)
     l: (url, callback) => {
         fetch(url)
             .then(data => data.text()).then(data => {
@@ -16,7 +16,7 @@ var _m = {
             });
     },
     
-    //initRoute()
+    //initRoute(string: url, function: callback)
     ir: (url, callback) => {
         _m.l(url, callback);
         _m.ipc();
@@ -28,12 +28,12 @@ var _m = {
         (c !== null) ? Array.from(c).forEach(element => { _m.lc(element.localName); }) : null;
     },
     
-    //initComponent()
+    //initComponent(string: url, function: callback)
     ic: (url, callback) => {
         _m.l(url, callback);
     },
     
-    //loadModel()
+    //loadModel(string: name, function: callback)
     lm: (name, callback) => {
         _m.l(app.config.folder_models + name + app.config.suffix_models, callback);
     },
@@ -62,7 +62,7 @@ var _m = {
         return name;
     },
     
-    //getUrlParameter()
+    //getUrlParameter(string: name)
     gup: (name) => {
         name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
 
@@ -74,7 +74,7 @@ var _m = {
             : decodeURIComponent(results[1].replace(/\+/g, " "));
     },
     
-    //getViewController()
+    //getViewController(string: name)
     gvc: (name) => {
         var n = name.split("-");
         name = n[0];
@@ -87,7 +87,7 @@ var _m = {
         return name += app.config.view_controller_object;
     },
     
-    //getViewModel()
+    //getViewModel(string: name)
     gvm: (name) => {
         var n = name.split("-");
         name = n[0];
@@ -100,7 +100,7 @@ var _m = {
         return name += app.config.view_model_object;
     },
     
-    //loadComponent()
+    //loadComponent(string: name)
     lc: (name) => {
         var component = app.components.find(function (c) { return c.name == name; });
 
@@ -115,12 +115,14 @@ var _m = {
     },
     
     //add event listener
+    //on (string: id, string: action, function: response)
     on: (id, action, response) => {
         let elem = document.querySelector(id);
         if (elem !== null) elem.addEventListener(action, response);
     },
     
     //remove event listener
+    //off (string: id, string: action, function: response)
     off: (id, action, response) => {
         let elem = document.querySelector(id);
         if (elem !== null) elem.removeEventListener(action, response);
