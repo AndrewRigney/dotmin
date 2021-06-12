@@ -1,7 +1,10 @@
-var gulp = require('gulp');
-var del = require('del');
-var replace = require('gulp-replace');
-var htmlmin = require('gulp-htmlmin');
+const gulp = require('gulp');
+const del = require('del');
+const replace = require('gulp-replace');
+const htmlmin = require('gulp-htmlmin');
+const postcss = require('gulp-postcss');
+const concat = require('gulp-concat');
+const cssnano = require('cssnano');
 
 //Start series
 function clean() {
@@ -32,8 +35,11 @@ function sw() {
 };
 
 function css() {
-    return gulp.src('css/**/*.min.css')
-        .pipe(gulp.dest('public/css'))
+    return gulp
+        .src('css/**/*.css')
+        .pipe(concat('app.min.css'))
+        .pipe(postcss([cssnano({ discardComments: { removeAll: true }})]))
+        .pipe(gulp.dest('public/css'));
 };
 
 function js() {

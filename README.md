@@ -13,6 +13,8 @@ Miniscule JavaSript app framework
 `npm install --save-dev gulp-replace`
 ### gulp-htmlmin
 `npm install --save-dev gulp gulp-htmlmin`
+### gulp bundle and minify CSS
+`npm install --save-dev gulp-postcss cssnano gulp-concat`
 
 ## Build
 gulp will deploy production files to *public* and set the buildTarget to PROD which suppresses console.log() & console.info() output
