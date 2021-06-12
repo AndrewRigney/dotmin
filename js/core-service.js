@@ -2,10 +2,7 @@ var _m = {
     ready: (callback) => {
         (document.readyState != "loading") ? callback() : document.addEventListener("DOMContentLoaded", callback);
     },
-    require: (url) => {
-        _m.loadScript(url, null);
-    },
-    loadScript: (url, callback) => {
+    load: (url, callback) => {
         fetch(url)
             .then(data => data.text()).then(data => {
                 eval(data);
@@ -15,13 +12,13 @@ var _m = {
             });
     },
     initRoute: (url, callback) => {
-        _m.loadScript(url, callback);
+        _m.load(url, callback);
     },
     initComponent: (url, callback) => {
-        _m.loadScript(url, callback);
+        _m.load(url, callback);
     },
     loadModel: (name, callback) => {
-        _m.loadScript(app.config.folder_models + name + app.config.suffix_models, callback);
+        _m.load(app.config.folder_models + name + app.config.suffix_models, callback);
     },
     getRoute: () => {
         var location = window.location.href.toString();
@@ -87,7 +84,7 @@ var _m = {
                 console.error(error);
             });
 
-            _m.loadScript(app.config.folder_views + component.path + name + app.config.suffix_views, _m.getViewController(name) + ".init()");
+            _m.load(app.config.folder_views + component.path + name + app.config.suffix_views, _m.getViewController(name) + ".init()");
     },
     on: (id, action, response) => {
         let elem = document.querySelector(id);

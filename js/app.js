@@ -35,7 +35,7 @@ var app = {
 };
 
 //App depedencies
-_m.require("js/vendor/bootstrap.min.js");
+_m.load("js/vendor/bootstrap.min.js");
 
 //App controller
 _m.ready(() => {
