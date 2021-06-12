@@ -2,7 +2,7 @@ var pageController = {
     init: function () { 
         //Load model
         //declare an IIFE as the callback to process the model data
-        _m.loadModel("default", `(() => {
+        _m.lm("default", `(() => {
                 defaultModel.greeting += "! :)";
                 document.getElementById("slide1_h1").textContent = defaultModel.greeting;
                 document.getElementById("slide1_p").textContent = defaultModel.copy;
@@ -12,8 +12,8 @@ var pageController = {
         );
         
         //Load components
-        _m.loadComponent("navbar-component");
-        _m.loadComponent("footer-component");
-        _m.loadComponent("theme-picker-component");
+        _m.lc("navbar-component");
+        _m.lc("footer-component");
+        _m.lc("theme-picker-component");
     }   
 };

@@ -6,17 +6,15 @@ const concat = require('gulp-concat');
 const cssnano = require('cssnano');
 const terser = require('gulp-terser');
 const rename = require('gulp-rename');
-const browserSync = require('browser-sync')
-
-const server = browserSync.create();
+const browserSync = require('browser-sync').create();
 
 //Start series
-function clean() {
+const clean = () => {
     return del(['public']);
 };
 
 //Start parallel
-function html() {
+const html = () => {
     return gulp
         .src('*.html')
         .pipe(htmlmin({
@@ -29,13 +27,13 @@ function html() {
         .pipe(gulp.dest('public'));
 };
 
-function manifest() {
+const manifest = () => {
     return gulp
         .src('*.webmanifest')
         .pipe(gulp.dest('public'));
 };
 
-function sw() {
+const sw = () => {
     return gulp
         .src('service-worker.js')
         .pipe(terser())
@@ -45,7 +43,7 @@ function sw() {
         .pipe(gulp.dest('public'));
 };
 
-function css() {
+const css = () => {
     return gulp
         .src('css/**/*.css')
         .pipe(concat('app.min.css'))
@@ -53,7 +51,7 @@ function css() {
         .pipe(gulp.dest('public/css'));
 };
 
-function js() {
+const js = () => {
     return gulp
         .src(['js/core-service.js',
             'js/app.js',
@@ -63,13 +61,13 @@ function js() {
         .pipe(gulp.dest('public/js'));
 };
 
-function vendorJs() {
+const vendorJs = () => {
     return gulp
         .src('js/vendor/*.js')
         .pipe(gulp.dest('public/js/vendor'))
 };
 
-function models() {
+const models = () => {
     return gulp
         .src('js/models/**/*.js')
         .pipe(terser())
@@ -79,13 +77,13 @@ function models() {
         .pipe(gulp.dest('public/js/models'))
 };
 
-function views() {
+const views = () => {
     return gulp
         .src('views/**/*.html')
         .pipe(gulp.dest('public/views'))
 };
 
-function viewControllers() {
+const viewControllers = () => {
     return gulp
         .src('views/controllers/**/*.js')
         .pipe(terser())
@@ -95,7 +93,7 @@ function viewControllers() {
         .pipe(gulp.dest('public/views/controllers'))
 };
 
-function controllers() {
+const controllers = () => {
     return gulp
         .src('js/controllers/**/*.js')
         .pipe(terser())
@@ -105,19 +103,19 @@ function controllers() {
         .pipe(gulp.dest('public/js/controllers'))
 };
 
-function ico() {
+const ico = () => {
     return gulp
         .src('ico/**/*.*')
         .pipe(gulp.dest('public/ico'))
 };
 
-function img() {
+const img = () => {
     return gulp
         .src('img/**/*.*')
         .pipe(gulp.dest('public/img'))
 };
 
-function artwork() {
+const artwork = () => {
     return gulp
         .src('artwork/**/*.*')
         .pipe(gulp.dest('public/artwork'))
@@ -125,16 +123,28 @@ function artwork() {
 //End parallel
 //End series
 
-function serve(done) {
-    server.init({
-      server: {
-        baseDir: './public',
-        https: true,
-        notify: false
-      }
+const reload = (done) => {
+    browserSync.reload();
+    done();
+}
+
+const serve = (done) => {
+    browserSync.init({
+        server: {
+            baseDir: './public',
+            https: true,
+            notify: false
+        }
     });
     done();
-  }
+}
 
-exports.default = gulp.series(clean, gulp.parallel(html, manifest, sw, css, js, vendorJs, models, views, viewControllers, controllers, ico, img, artwork));
-exports.serve = gulp.series(serve);
+const watch = () => {
+    gulp.watch('js/*.js', { delay: 1000 }, gulp.series(js, reload));
+    gulp.watch('*.html', { delay: 1000 }, gulp.series(html, reload));
+    gulp.watch('js/controllers/**/*.js', { delay: 1000 }, gulp.series(viewControllers, reload));
+    gulp.watch('js/models/**/*.js', { delay: 1000 }, gulp.series(models, reload));
+};
+
+exports.default = gulp.series(clean, gulp.parallel(html, manifest, sw, css, js, vendorJs, models, views, viewControllers, controllers, ico, img, artwork), serve, watch);
+exports.build = gulp.series(clean, gulp.parallel(html, manifest, sw, css, js, vendorJs, models, views, viewControllers, controllers, ico, img, artwork));

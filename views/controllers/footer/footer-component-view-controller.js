@@ -1,6 +1,6 @@
 var footerComponentViewController = {
     init: () => {
-        _m.ready( function() {
+        _m.r( function() {
             _m.on("#trg", "click", function (e) {
                 var toastElList = [].slice.call(document.querySelectorAll('.toast'))
                 var toastList = toastElList.map((toastEl) => {

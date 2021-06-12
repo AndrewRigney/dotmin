@@ -6,7 +6,7 @@ const buildTargets = {
 
 //App info
 var app = {
-    version: "1.2.2019.031020191530",
+    version: "0.8.2021.06121702",
     target: buildTargets.DEVEL,
     config: {
         "folder_services": "js/services/",
@@ -35,13 +35,12 @@ var app = {
 };
 
 //App depedencies
-_m.load("js/vendor/bootstrap.min.js");
+_m.l("js/vendor/bootstrap.min.js");
 
 //App controller
-_m.ready(() => {
-    _m.initRoute(app.config.folder_controllers + _m.getRoute().controller + app.config.suffix_controllers, "pageController.init()");
+_m.r(() => {
+    _m.ir(app.config.folder_controllers + _m.gr().controller + app.config.suffix_controllers, "pageController.init()");
     if (app.target === buildTargets.PROD) {
-        console.log = function() {};
-        console.info = function() {};
+        //noOp
     }
 });

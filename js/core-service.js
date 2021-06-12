@@ -1,8 +1,12 @@
+//dotmin object
 var _m = {
-    ready: (callback) => {
+    //ready()
+    r: (callback) => {
         (document.readyState != "loading") ? callback() : document.addEventListener("DOMContentLoaded", callback);
     },
-    load: (url, callback) => {
+    
+    //load()
+    l: (url, callback) => {
         fetch(url)
             .then(data => data.text()).then(data => {
                 eval(data);
@@ -11,16 +15,24 @@ var _m = {
                 console.error(error);
             });
     },
-    initRoute: (url, callback) => {
-        _m.load(url, callback);
+    
+    //initRoute()
+    ir: (url, callback) => {
+        _m.l(url, callback);
     },
-    initComponent: (url, callback) => {
-        _m.load(url, callback);
+    
+    //initComponent()
+    ic: (url, callback) => {
+        _m.l(url, callback);
     },
-    loadModel: (name, callback) => {
-        _m.load(app.config.folder_models + name + app.config.suffix_models, callback);
+    
+    //loadModel()
+    lm: (name, callback) => {
+        _m.l(app.config.folder_models + name + app.config.suffix_models, callback);
     },
-    getRoute: () => {
+    
+    //getRoute()
+    gr: () => {
         var location = window.location.href.toString();
         var currentRoute = app.routes.find((c) => { return c.name === app.config.default_route; });
 
@@ -32,7 +44,8 @@ var _m = {
 
         return currentRoute;
     },
-    getPageName: () => {
+    //getPageName()
+    gpn: () => {
         var locations = window.location.href.toString().split("/");
         var name = locations[locations.length - 1];
 
@@ -42,7 +55,9 @@ var _m = {
 
         return name;
     },
-    getUrlParameter: (name) => {
+    
+    //getUrlParameter()
+    gup: (name) => {
         name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
 
         var regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
@@ -52,7 +67,9 @@ var _m = {
             ? ""
             : decodeURIComponent(results[1].replace(/\+/g, " "));
     },
-    getViewController: (name) => {
+    
+    //getViewController()
+    gvc: (name) => {
         var n = name.split("-");
         name = n[0];
         n.forEach((element, index) => {
@@ -63,7 +80,9 @@ var _m = {
 
         return name += app.config.view_controller_object;
     },
-    getViewModel: (name) => {
+    
+    //getViewModel()
+    gvm: (name) => {
         var n = name.split("-");
         name = n[0];
         n.forEach((element, index) => {
@@ -74,7 +93,9 @@ var _m = {
 
         return name += app.config.view_model_object;
     },
-    loadComponent: (name) => {
+    
+    //loadComponent()
+    lc: (name) => {
         var component = app.components.find(function (c) { return c.name == name; });
 
         fetch("/views/" + component.path + name + ".html")
@@ -84,12 +105,16 @@ var _m = {
                 console.error(error);
             });
 
-            _m.load(app.config.folder_views + component.path + name + app.config.suffix_views, _m.getViewController(name) + ".init()");
+            _m.l(app.config.folder_views + component.path + name + app.config.suffix_views, _m.gvc(name) + ".init()");
     },
+    
+    //add event listener
     on: (id, action, response) => {
         let elem = document.querySelector(id);
         if (elem !== null) elem.addEventListener(action, response);
     },
+    
+    //remove event listener
     off: (id, action, response) => {
         let elem = document.querySelector(id);
         if (elem !== null) elem.removeEventListener(action, response);
