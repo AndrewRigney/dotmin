@@ -10,5 +10,13 @@ var pageController = {
                 document.getElementById("slide1_cta").setAttribute("href", defaultModel.ctaLink);
             })();`
         );
+
+        fetch("https://api.ipify.org/?format=json")
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("slide1_p").innerHTML += "<br/>You're visiting us from " + data.ip + ". Remember, there's no place like 127.0.0.1!";
+            }).catch(error => {
+                console.error(error);
+            });
     }   
 };

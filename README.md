@@ -32,3 +32,4 @@ Runs https on port 3000
 - https://tobiasahlin.com/blog/move-from-jquery-to-vanilla-javascript/#working-with-events
 - https://blog.bitsrc.io/you-dont-need-lodash-or-how-i-started-loving-javascript-functions-3f45791fa6cd
 - https://www.sitepoint.com/lodash-features-replace-es6/
+- https://mixedanalytics.com/blog/list-actually-free-open-no-auth-needed-apis/
