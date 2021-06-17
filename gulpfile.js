@@ -150,3 +150,4 @@ const watch = () => {
 
 exports.default = gulp.series(clean, gulp.parallel(html, manifest, sw, css, js, vendorJs, models, views, viewControllers, controllers, ico, img, artwork), serve, watch);
 exports.build = gulp.series(clean, gulp.parallel(html, manifest, sw, css, js, vendorJs, models, views, viewControllers, controllers, ico, img, artwork));
+exports.serve = gulp.series(serve);
