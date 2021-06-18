@@ -142,3 +142,15 @@ export function unlisten(id, action, response) {
     let elem = document.querySelector(id);
     if (elem !== null) elem.removeEventListener(action, response);
 };
+
+// Check that service workers are registered
+if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+        console.info("registering service worker");
+        navigator.serviceWorker.register("/service-worker.min.js");
+    });
+} else {
+    if (window.location.toString().indexOf("http://") !== -1) {
+        console.warning("SW error : site served under HTTP - SW requires HTTPS");
+    }
+}
