@@ -1,4 +1,4 @@
-var defaultModel = {
+var pageModel = {
     greeting: "Welcome to dotmin",
     copy: "minuscule JavaScript app framework. Current build : " + app.version,
     cta: "Clone it now",
