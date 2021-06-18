@@ -64,14 +64,9 @@ const _m = {
     
     //getUrlParameter(string: name)
     gup: (name) => {
-        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-
-        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
-        var results = regex.exec(location.search);
-
-        return results === null
-            ? ""
-            : decodeURIComponent(results[1].replace(/\+/g, " "));
+        var parameters = new URLSearchParams(window.location.search);
+        
+        return (parameters.has(name) ? parameters.get(name) : null);
     },
     
     //getViewController(string: name)
