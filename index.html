@@ -18,6 +18,10 @@
     <noscript>
         <link rel="stylesheet" href="css/app.min.css" />
     </noscript>
+    <link rel="preload" href="css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript>
+        <link rel="stylesheet" href="css/bootstrap.min.css" />
+    </noscript>
 
     <!-- Fav icon -->
     <link rel="shortcut icon" href="ico/favicon.png" />
@@ -270,8 +274,7 @@
         <footer-component class="component"></footer-component>
     </main>
 
-    <script src="js/bundle.min.js"></script>
-    <script src="js/vendor/bootstrap.min.js"></script>
+    <script type="module" src="js/app.min.js"></script>
 </body>
 
 </html>
