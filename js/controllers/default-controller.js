@@ -2,7 +2,7 @@
     //Load model
     //declare an IIFE as the callback to process the model data
     this.loadModel("default", `(() => {
-                defaultModel.greeting += "! :)";
+                defaultModel.greeting += "!* :)";
                 document.getElementById("slide1_h1").textContent = defaultModel.greeting;
                 document.getElementById("slide1_p").textContent = defaultModel.copy;
                 document.getElementById("slide1_cta").textContent = defaultModel.cta;

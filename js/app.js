@@ -5,7 +5,7 @@ Core.loadScript("js/vendor/bootstrap.min.js");
 
 //App controller
 Core.ready(() => {
-    Core.initRoute(Core.config.folder_controllers + Core.getRoute().controller + Core.config.suffix_controllers, null);
+    Core.initRoute(Core.config.folder_controllers + Core.getRoute().controller + Core.config.suffix_controllers);
     
     if (Core.app.target === Core.buildTargets.PROD) {
         //noOp

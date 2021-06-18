@@ -23,15 +23,13 @@ export const app = {
 
 //App configuration
 export const config = {
-    "folder_services": "js/services/",
-    "suffix_services": "-service.js",
     "folder_models": "js/models/",
-    "suffix_models": "-model.js",
+    "suffix_models": "-model.min.js",
     "view_model_object": "Model",
     "folder_views": "views/controllers/",
-    "suffix_views": "-view-controller.js",
+    "suffix_views": "-view-controller.min.js",
     "folder_controllers": "js/controllers/",
-    "suffix_controllers": "-controller.js",
+    "suffix_controllers": "-controller.min.js",
     "view_controller_object": "ViewController",
     "default_route": "default"
 };
@@ -45,13 +43,14 @@ export function loadScript(url, callback) {
     fetch(url)
         .then(data => data.text()).then(data => {
             eval(data);
+            (typeof(callback) !== undefined) ? eval(callback) : null;
         }).catch(error => {
             console.error(error);
         });
 };
 
-export function initRoute(url, callback) {
-    this.loadScript(url, callback);
+export function initRoute(url) {
+    this.loadScript(url);
     this.initPageComponents();
 };
 
@@ -60,12 +59,12 @@ export function initPageComponents() {
     (c !== null) ? Array.from(c).forEach(element => { this.loadComponent(element.localName); }) : null;
 };
 
-export function initComponent(url, callback) {
-    this.loadScript(url, callback);
+export function initComponent(url) {
+    this.loadScript(url);
 };
 
 export function loadModel(name, callback) {
-    this.loadScript(config.folder_models + name + config.suffix_models, callback);
+    return this.loadScript(config.folder_models + name + config.suffix_models, callback);
 };
 
 export function getRoute() {
@@ -130,7 +129,7 @@ export function loadComponent(name) {
             console.error(error);
         });
 
-    this.loadScript(config.folder_views + component.path + name + config.suffix_views, null);
+    this.loadScript(config.folder_views + component.path + name + config.suffix_views);
 };
 
 export function listen(id, action, response) {

@@ -53,11 +53,12 @@ const css = () => {
 
 const js = () => {
     return gulp
-        .src(['js/core-service.js',
-            'js/app.js',
-            'js/service-worker.js'])
-        .pipe(concat('bundle.min.js'))
+        .src(['js/app.js', 'js/core.js'])
+        //.pipe(concat('core.min.js'))
         .pipe(terser())
+        .pipe(rename({
+            suffix: '.min'
+        }))
         .pipe(gulp.dest('public/js'));
 };
 
