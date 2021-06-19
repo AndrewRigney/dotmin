@@ -17,7 +17,7 @@ const app = {
         { name: "footer-component", path: "footer/" },
         { name: "theme-picker-component", path: "theme-picker/" }
     ],
-    version: "0.8.2021.06130455",
+    version: "0.8.2021.06191044",
     target: buildTargets.DEVEL,
 };
 
