@@ -26,21 +26,21 @@ on:
       - main
 
 jobs:
-  build:
-    name: Build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repo
-        uses: actions/checkout@master
-      - name: Install Dependencies
-        run: npm install gulp
-      - name: Build
-        run: gulp build
-      - name: Archive Production Artifact
-        uses: actions/upload-artifact@master
-        with:
-          name: public
-          path: public
+  #build:
+  #  name: Build
+  #  runs-on: ubuntu-latest
+  #  steps:
+  #    - name: Checkout Repo
+  #      uses: actions/checkout@master
+  #    - name: Install Dependencies
+  #      run: npm install gulp
+  #    - name: Build
+  #      run: gulp build
+  #    - name: Archive Production Artifact
+  #      uses: actions/upload-artifact@master
+  #      with:
+  #        name: public
+  #        path: public
   deploy:
     name: Deploy
     needs: build
