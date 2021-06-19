@@ -17,7 +17,7 @@ const app = {
         { name: "footer-component", path: "footer/" },
         { name: "theme-picker-component", path: "theme-picker/" }
     ],
-    version: "0.8.2021.06191044",
+    version: "0.8.2021.06191819",
     target: buildTargets.DEVEL,
 };
 
@@ -49,6 +49,18 @@ const _m = {
             }).catch(error => {
                 console.error(error);
             });
+    },
+
+    //loadModel(string: url)
+    lm: () => {
+        var url = config.folder_models + _m.gr().name + config.suffix_models;
+        return new Promise((resolve, reject) => {
+            let s = document.createElement("script");
+            s.onload = () => { resolve(); };
+            s.onerror = (e) => { reject(e); };
+            s.src = url;
+            document.head.append(s); 
+        });
     },
 
     //initRoute(string: url, function: callback)
