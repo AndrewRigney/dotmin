@@ -1,7 +1,6 @@
 // Check that service workers are registered
 if ("serviceWorker" in navigator) {
     window.addEventListener("load", () => {
-        console.log("registering service worker");
         navigator.serviceWorker.register("/service-worker.min.js");
     });
 } else {

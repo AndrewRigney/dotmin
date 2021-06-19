@@ -1,8 +1,6 @@
 importScripts('https://storage.googleapis.com/workbox-cdn/releases/4.2.0/workbox-sw.js');
 
 if (workbox) {
-    console.log("Workbox loaded");
-
     // Cache the Google Fonts webfont files with a cache first strategy for 1 year.
     workbox.routing.registerRoute(
         /^https:\/\/fonts\.gstatic\.com/,
