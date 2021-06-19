@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
-          entrypoint: /dotmin
+          entrypoint: ./
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_DOTMIN_PWA }}'
           channelId: live
