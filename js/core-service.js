@@ -4,23 +4,6 @@ const buildTargets = {
     PROD: "Production"
 };
 
-//App info
-const app = {
-    routes: [
-        { name: "child1", path: "child1.html", controller: "child1" },
-        { name: "child2", path: "child2.html", controller: "child12" },
-        { name: "index", path: "index.html", controller: "default" },
-        { name: "default", path: "index.html", controller: "default" }
-    ],
-    components: [
-        { name: "navbar-component", path: "navbar/" },
-        { name: "footer-component", path: "footer/" },
-        { name: "theme-picker-component", path: "theme-picker/" }
-    ],
-    version: "0.8.2021.06191819",
-    target: buildTargets.DEVEL,
-};
-
 const config = {
     "folder_models": "js/models/",
     "suffix_models": "-model.min.js",
