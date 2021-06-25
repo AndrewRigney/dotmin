@@ -47,7 +47,7 @@
                 <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
             </div>
             <div class="carousel-inner">
-                <div class="carousel-item active" style="background-image: url('img/img0.jpg');">
+                <div class="carousel-item active" data-bg="/img/img0.jpg" style="background-image: url('img/img0.jpg');">
                     
                     <div class="container">
                         <div class="carousel-caption text-white text-start">
@@ -62,7 +62,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="carousel-item" style="background-image: url('img/img19.jpg');">
+                <div class="carousel-item lazy" data-bg="/img/img19.jpg">
                     
                     <div class="container">
                         <div class="carousel-caption text-white">
@@ -75,7 +75,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="carousel-item" style="background-image: url('img/img100.jpg');">
+                <div class="carousel-item lazy" data-bg="/img/img100.jpg">
                     
                     <div class="container">
                         <div class="carousel-caption text-white text-end">
@@ -220,6 +220,18 @@
 
     <script src="js/bundle.min.js"></script>
     <script src="js/vendor/bootstrap.min.js"></script>
+    <script>
+        var myCarousel = document.getElementById('myCarousel')
+
+        myCarousel.addEventListener('slid.bs.carousel', function (e) {
+            var elem = document.querySelector(".carousel-item.lazy.active");
+            if (elem !== null) {
+                var bgImg = elem.getAttribute("data-bg");
+                elem.setAttribute("style", "background-image: url('" + bgImg + "')");
+                elem.classList.remove("lazy");
+            }
+        });
+    </script>
 </body>
 
 </html>
