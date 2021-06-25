@@ -31,6 +31,7 @@
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center center;
+            background-color: darkslategray;
         }
     </style>
 </head>
@@ -47,23 +48,22 @@
                 <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
             </div>
             <div class="carousel-inner">
-                <div class="carousel-item active" data-bg="/img/img0.jpg" style="background-image: url('img/img0.jpg');">
-                    
+                <div class="carousel-item lazy_ active" data-bg="/img/img0.jpg">
+
                     <div class="container">
                         <div class="carousel-caption text-white text-start">
-                            <h1 id="slide1_h1">Example headline.</h1>
+                            <h1 id="slide1_h1">Welcome to dotmin! :)</h1>
                             <p id="slide1_p">
-                                Some representative placeholder content for the first slide of
-                                the carousel.
+                                a minuscule JavaScript app framework
                             </p>
                             <p>
-                                <a id="slide1_cta" class="btn btn-lg btn-outline-light" href="#">Sign up today</a>
+                                <a id="slide1_cta" class="btn btn-lg btn-outline-light" href="https://github.com/AndrewRigney/dotmin">Clone it now</a>
                             </p>
                         </div>
                     </div>
                 </div>
-                <div class="carousel-item lazy" data-bg="/img/img19.jpg">
-                    
+                <div class="carousel-item lazy_" data-bg="/img/img19.jpg" style="background-color: rgb(28, 47, 66);">
+
                     <div class="container">
                         <div class="carousel-caption text-white">
                             <h1>Another example headline.</h1>
@@ -75,8 +75,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="carousel-item lazy" data-bg="/img/img100.jpg">
-                    
+                <div class="carousel-item lazy_" data-bg="/img/img100.jpg" style="background-color: rgb(80, 65, 80);">
+
                     <div class="container">
                         <div class="carousel-caption text-white text-end">
                             <h1>One more for good measure.</h1>
@@ -196,11 +196,9 @@
                     <h2 class="featurette-heading">
                         And lastly, this one. <span class="text-muted">Checkmate.</span>
                     </h2>
-                    <p class="lead">
-                        And yes, this is the last block of representative placeholder
-                        content. Again, not really intended to be actually read, simply
-                        here to give you a better view of what this would look like with
-                        some actual content. Your content.
+                    <p  id="welcomeMessage" class="lead">
+                        minuscule JavaScript app framework. Current build : 0.0.0000.00000000<br/>
+                        You're visiting us from 000.000.000.000
                     </p>
                 </div>
                 <div class="col-md-5">
@@ -220,15 +218,15 @@
 
     <script src="js/bundle.min.js" defer></script>
     <script src="js/vendor/bootstrap.min.js" defer></script>
-    <script defer>
-        var myCarousel = document.getElementById('myCarousel')
-
-        myCarousel.addEventListener('slid.bs.carousel', function (e) {
-            var elem = document.querySelector(".carousel-item.lazy.active");
-            if (elem !== null) {
-                var bgImg = elem.getAttribute("data-bg");
-                elem.setAttribute("style", "background-image: url('" + bgImg + "')");
-                elem.classList.remove("lazy");
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            var elems = document.querySelectorAll(".carousel-item.lazy");
+            if (elems !== null && elems.length > 0) {
+                elems.forEach((elem) => {
+                    var bgImg = elem.getAttribute("data-bg");
+                    elem.setAttribute("style", "background-image: url('" + bgImg + "')");
+                    elem.classList.remove("lazy");
+                });
             }
         });
     </script>
