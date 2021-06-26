@@ -31,7 +31,6 @@
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center center;
-            background-color: darkslategray;
         }
     </style>
 </head>
@@ -48,7 +47,7 @@
                 <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
             </div>
             <div class="carousel-inner">
-                <div class="carousel-item lazy_ active" data-bg="/img/img0.jpg">
+                <div class="carousel-item lazy_ active" data-bg="/img/img0.jpg" style="background: rgb(47,79,79); background: linear-gradient(0deg, rgba(47,79,79,1) 0%, rgba(28,47,66,1) 100%);">
 
                     <div class="container">
                         <div class="carousel-caption text-white text-start">
@@ -62,7 +61,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="carousel-item lazy_" data-bg="/img/img19.jpg" style="background-color: rgb(28, 47, 66);">
+                <div class="carousel-item lazy_" data-bg="/img/img19.jpg" style="background: rgb(28,47,66); background: linear-gradient(0deg, rgba(28,47,66,1) 0%, rgba(80,65,80,1) 100%);">
 
                     <div class="container">
                         <div class="carousel-caption text-white">
@@ -75,7 +74,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="carousel-item lazy_" data-bg="/img/img100.jpg" style="background-color: rgb(80, 65, 80);">
+                <div class="carousel-item lazy_" data-bg="/img/img100.jpg" style="background: rgb(80,65,80); background: linear-gradient(0deg, rgba(80,65,80,1) 0%, rgba(47,79,79,1) 100%);">
 
                     <div class="container">
                         <div class="carousel-caption text-white text-end">
@@ -218,7 +217,7 @@
 
     <script src="js/bundle.min.js" defer></script>
     <script src="js/vendor/bootstrap.min.js" defer></script>
-    <script>
+    <!--<script>
         document.addEventListener('DOMContentLoaded', () => {
             var elems = document.querySelectorAll(".carousel-item.lazy");
             if (elems !== null && elems.length > 0) {
@@ -229,7 +228,7 @@
                 });
             }
         });
-    </script>
+    </script>-->
 </body>
 
 </html>
