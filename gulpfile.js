@@ -45,7 +45,8 @@ const sw = () => {
 
 const css = () => {
     return gulp
-        .src('css/**/*.css')
+        .src(['css/bootstrap.css',
+            'css/app.css'])
         .pipe(concat('app.min.css'))
         .pipe(postcss([cssnano({ discardComments: { removeAll: true } })]))
         .pipe(gulp.dest('public/css'));
@@ -142,6 +143,7 @@ const serve = (done) => {
 const watch = () => {
     gulp.watch('js/*.js', { delay: 1000 }, gulp.series(js, reload));
     gulp.watch('*.html', { delay: 1000 }, gulp.series(html, reload));
+    gulp.watch('css/*.css', { delay: 1000 }, gulp.series(css, reload));
     gulp.watch('js/models/**/*.js', { delay: 1000 }, gulp.series(models, reload));
     gulp.watch('js/controllers/**/*.js', { delay: 1000 }, gulp.series(controllers, reload));
     gulp.watch('views/controllers/**/*.js', { delay: 1000 }, gulp.series(viewControllers, reload));
