@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="title" content="dotmin - miniscule JavaScript app framework" />
     <meta name="description" content="dotmin - miniscule JavaScript app framework" />
-    <meta name="keywords" content="minuscule, javascript. application, app, framework, library, mvc" />
+    <meta name="keywords" content="minuscule, javascript, application, app, framework, library, mvc" />
     <meta name="author" content="The Rigney Group - Andrew Rigney" />
     <meta name="theme-color" content="#24ae5f" />
 
@@ -221,38 +221,6 @@
 
     <script src="js/bundle.min.js" defer></script>
     <script src="js/vendor/bootstrap.min.js" defer></script>
-    <!--<script>
-        document.addEventListener('DOMContentLoaded', () => {
-            var elems = document.querySelectorAll(".carousel-item.lazy");
-            if (elems !== null && elems.length > 0) {
-                elems.forEach((elem) => {
-                    var bgImg = elem.getAttribute("data-bg");
-                    elem.setAttribute("style", "background-image: url('" + bgImg + "')");
-                    elem.classList.remove("lazy");
-                });
-            }
-        });
-    </script>-->
-    <script>
-        const targets = document.querySelectorAll("img.lazy");
-
-        const lazyLoad = (target) => {
-            const io = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const img = entry.target;
-                        const src = img.getAttribute("data-src");
-
-                        img.setAttribute("src", src);
-                        observer.disconnect();
-                    }
-                })
-            }, { threshold: [0.25] });
-
-            io.observe(target);
-        }
-        targets.forEach(lazyLoad);
-    </script>
 </body>
 
 </html>

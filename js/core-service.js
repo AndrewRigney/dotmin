@@ -42,7 +42,7 @@ const _m = {
             s.onload = () => { resolve(); };
             s.onerror = (e) => { reject(e); };
             s.src = url;
-            document.head.append(s); 
+            document.head.append(s);
         });
     },
 
@@ -146,5 +146,28 @@ const _m = {
     off: (id, action, response) => {
         let elem = document.querySelector(id);
         if (elem !== null) elem.removeEventListener(action, response);
+    },
+
+    //lazy load images with the IntersectionObserver
+    //add class 'lazy' to an img element
+    ll: () => {
+        const targets = document.querySelectorAll("img.lazy");
+
+        const lazyLoad = (target) => {
+            const io = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        const src = img.getAttribute("data-src");
+
+                        img.setAttribute("src", src);
+                        observer.disconnect();
+                    }
+                })
+            }, { threshold: 0.33 });
+
+            io.observe(target);
+        }
+        targets.forEach(lazyLoad);
     }
 };
