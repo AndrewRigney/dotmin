@@ -3,7 +3,7 @@ _m.lm().then(() => {
     pageModel.greeting += "! :)";
     document.getElementById("welcomeMessage").innerHTML = pageModel.copy;
 
-    _m.ll();
+    _m.lli();
 
     _m.r(() => {
         var elems = document.querySelectorAll(".carousel-item.lazy");

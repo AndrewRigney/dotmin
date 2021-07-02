@@ -150,24 +150,56 @@ const _m = {
 
     //lazy load images with the IntersectionObserver
     //add class 'lazy' to an img element
-    ll: () => {
+    lli: () => {
         const targets = document.querySelectorAll("img.lazy");
 
-        const lazyLoad = (target) => {
+        if (!!window.IntersectionObserver) {
+            const lazyLoad = (target) => {
+                const io = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            const src = img.getAttribute("data-src");
+                            img.setAttribute("src", src);
+                            observer.disconnect();
+                        }
+                    })
+                }, { threshold: 0.33 });
+
+                io.observe(target);
+            }
+            targets.forEach(lazyLoad);
+        } else {
+            targets.forEach(function (target) {
+                const src = target.getAttribute("data-src");
+                target.setAttribute("src", src);
+            });
+        }
+    },
+
+    //lazy load block elements with the IntersectionObserver
+    //add class 'lazy-trigger' to an element
+    //add data-lazytriggerfor attribute to an element
+    //when the trigger element is scrolled in to view, the target
+    //element is then loaded
+    lle: () => {
+        const targets = document.querySelectorAll(".lazy-trigger");
+
+        if (!!window.IntersectionObserver) {
             const io = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        const img = entry.target;
-                        const src = img.getAttribute("data-src");
-
-                        img.setAttribute("src", src);
-                        observer.disconnect();
+                        document.querySelector("#" + entry.target.dataset.lazytriggerfor).style.display = "block";
                     }
-                })
-            }, { threshold: 0.33 });
-
-            io.observe(target);
+                });
+            }, { threshold: 0.5 });
+            targets.forEach(target => {
+                io.observe(target);
+            });
+        } else {
+            document.querySelectorAll(".lazy-element").forEach(function (target) {
+                target.style.display = "block";
+            });
         }
-        targets.forEach(lazyLoad);
     }
 };

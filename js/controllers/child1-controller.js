@@ -10,7 +10,7 @@ fetch("https://restcountries.eu/rest/v2/all")
             repeater.appendChild(node);
         });
 
-        _m.ll();
+        _m.lli();
 
     }).catch(error => {
         console.error(error);
