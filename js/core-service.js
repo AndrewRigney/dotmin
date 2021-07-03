@@ -154,21 +154,19 @@ const _m = {
         const targets = document.querySelectorAll("img.lazy");
 
         if (!!window.IntersectionObserver) {
-            const lazyLoad = (target) => {
-                const io = new IntersectionObserver((entries, observer) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            const img = entry.target;
-                            const src = img.getAttribute("data-src");
-                            img.setAttribute("src", src);
-                            observer.disconnect();
-                        }
-                    })
-                }, { threshold: 0.33 });
-
+            const io = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        const src = img.getAttribute("data-src");
+                        img.setAttribute("src", src);
+                        observer.disconnect();
+                    }
+                })
+            }, { threshold: 0.33 });
+            targets.forEach(taregt => {
                 io.observe(target);
-            }
-            targets.forEach(lazyLoad);
+            });
         } else {
             targets.forEach(function (target) {
                 const src = target.getAttribute("data-src");
@@ -197,8 +195,8 @@ const _m = {
                 io.observe(target);
             });
         } else {
-            document.querySelectorAll(".lazy-element").forEach(function (target) {
-                target.style.display = "block";
+            targets.forEach(function (target) {
+                document.querySelector("#" + target.dataset.lazytriggerfor).style.display = "block";
             });
         }
     }
