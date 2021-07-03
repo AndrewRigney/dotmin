@@ -164,7 +164,7 @@ const _m = {
                     }
                 })
             }, { threshold: 0.33 });
-            targets.forEach(taregt => {
+            targets.forEach(target => {
                 io.observe(target);
             });
         } else {
