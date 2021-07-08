@@ -1,7 +1,7 @@
 importScripts('https://storage.googleapis.com/workbox-cdn/releases/4.2.0/workbox-sw.js');
 
 if (workbox) {
-    console.log("Workbox loaded");
+    //console.log("Workbox loaded");
 
     // Cache the Google Fonts webfont files with a cache first strategy for 1 year.
     workbox.routing.registerRoute(
@@ -23,7 +23,12 @@ if (workbox) {
     workbox.routing.registerRoute(
         /\.(?:htm|html|shtml)$/,
         new workbox.strategies.CacheFirst({
-            cacheName: 'app-pages'
+            cacheName: 'app-pages',
+            plugins: [
+                new workbox.expiration.Plugin({
+                    maxAgeSeconds: 7 * 24 * 60 * 60, // 7 Days,
+                }),
+            ],
         }),
     );
 
@@ -55,5 +60,10 @@ if (workbox) {
         }),
     );
 } else {
-    console.log("Workbox didn't load");
+    //console.log("Workbox didn't load");
 }
+
+/* References
+https://developers.google.com/web/tools/workbox/modules/workbox-strategies
+https://developers.google.com/web/ilt/pwa/caching-files-with-service-worker
+*/
