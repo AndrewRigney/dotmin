@@ -15,6 +15,21 @@ _m.lm().then(() => {
             });
         }
     });
+    
+    _m.on("#f_img_001", "click", () => {
+        console.info("dispatching event");
+        document.dispatchEvent(new CustomEvent("imageClick", { detail: true }));
+    });
+
+    document.addEventListener("imageClick", (evt) => {
+        console.log("custom event handled");
+        document.querySelector("#f_001 h2 span.text-muted").innerHTML = "...Mind. Blown...!!";
+    });
+
+    document.addEventListener("imageClick", (evt) => {
+        console.log("custom event handled");
+        document.querySelector("#f_001 p.lead").innerHTML = "This was updated via custom events and handlers, set up within the page controller. In a real app, this can broadcast across components.";
+    });
 });
 
 fetch("https://api.ipify.org/?format=json")
@@ -24,3 +39,4 @@ fetch("https://api.ipify.org/?format=json")
     }).catch(error => {
         console.error(error);
     });
+
