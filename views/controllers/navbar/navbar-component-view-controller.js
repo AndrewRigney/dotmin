@@ -14,4 +14,9 @@
             }
         });
     }
+
+    document.addEventListener("imageClick", (evt) => {
+        console.log("custom event handled");
+        document.querySelector("#nav_main_002").textContent = "Whoa!";
+    });
 })();
