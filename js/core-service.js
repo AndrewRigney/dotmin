@@ -134,6 +134,20 @@ const _m = {
         return name += config.view_model_object;
     },
 
+    //dispatch custom event
+    //de(string: name, object: details)
+    de: (name, details) => {
+        document.dispatchEvent(new CustomEvent(name, { detail: details }));
+    },
+
+    //listen for dispatched event
+    //le(string: name, function: callback)
+    le: (name, callback) => {
+        document.addEventListener(name, (evt) => {
+            callback(evt);
+        })
+    },
+
     //add event listener
     //on (string: id, string: action, function: response)
     on: (id, action, response) => {

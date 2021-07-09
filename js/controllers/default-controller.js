@@ -17,18 +17,15 @@ _m.lm().then(() => {
     });
     
     _m.on("#f_img_001", "click", () => {
-        console.info("dispatching event");
-        document.dispatchEvent(new CustomEvent("imageClick", { detail: true }));
+        _m.de("imageClick", { "state":true });
     });
 
-    document.addEventListener("imageClick", (evt) => {
-        console.log("custom event handled");
-        document.querySelector("#f_001 h2 span.text-muted").innerHTML = "...Mind. Blown...!!";
+    _m.le("imageClick", (evt) => {
+        document.querySelector("#f_001 h2 span.text-muted").innerHTML = `...Mind blown? ${evt.detail.state}...!!`;
     });
 
-    document.addEventListener("imageClick", (evt) => {
-        console.log("custom event handled");
-        document.querySelector("#f_001 p.lead").innerHTML = "This was updated via custom events and handlers, set up within the page controller. In a real app, this can broadcast across components.";
+    _m.le("imageClick", () => {
+        document.querySelector("#f_001 p.lead").innerHTML = "This was updated via custom events and handlers, set up within the page controller. In a real app, this can broadcast across components. See how the menu changed?";
     });
 });
 

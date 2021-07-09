@@ -15,8 +15,7 @@
         });
     }
 
-    document.addEventListener("imageClick", (evt) => {
-        console.log("custom event handled");
+    _m.le("imageClick", () => {
         document.querySelector("#nav_main_002").textContent = "Whoa!";
     });
 })();
