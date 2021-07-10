@@ -4,6 +4,7 @@ const htmlmin = require('gulp-htmlmin');
 const postcss = require('gulp-postcss');
 const concat = require('gulp-concat');
 const cssnano = require('cssnano');
+const replace = require('gulp-replace');
 const terser = require('gulp-terser');
 const rename = require('gulp-rename');
 const browserSync = require('browser-sync').create();
@@ -57,6 +58,41 @@ const js = () => {
         .src(['js/core-service.js',
             'js/app.js',
             'js/service-worker.js'])
+        .pipe(replace("dotmin", "_m"))
+        //Uglify method declarations
+        .pipe(replace("ready:", "r:"))
+        .pipe(replace("load:", "l:"))
+        .pipe(replace("loadModel:", "lm:"))
+        .pipe(replace("initRoute:", "ir:"))
+        .pipe(replace("loadComponent:", "lc:"))
+        .pipe(replace("initPageComponents:", "ipc:"))
+        .pipe(replace("initComponent:", "ic:"))
+        .pipe(replace("getRoute:", "gr:"))
+        .pipe(replace("getPageName:", "gpn:"))
+        .pipe(replace("getUrlParameter:", "gup:"))
+        .pipe(replace("getViewController:", "gvc:"))
+        .pipe(replace("getViewModel:", "gvm:"))
+        .pipe(replace("dispatchEvent:", "de:"))
+        .pipe(replace("listenToEvent:", "le:"))
+        .pipe(replace("lazyLoadImages:", "lli:"))
+        .pipe(replace("lazyLoadElement:", "lle:"))
+        //uglify method calls
+        .pipe(replace("_m.ready", "_m.r"))
+        .pipe(replace("_m.load", "_m.l"))
+        .pipe(replace("_m.loadModel", "_m.lm"))
+        .pipe(replace("_m.initRoute", "_m.ir"))
+        .pipe(replace("_m.loadComponent", "_m.lc"))
+        .pipe(replace("_m.initPageComponents", "_m.ipc"))
+        .pipe(replace("_m.initComponent", "_m.ic"))
+        .pipe(replace("_m.getRoute", "_m.gr"))
+        .pipe(replace("_m.getPageName", "_m.gpn"))
+        .pipe(replace("_m.getUrlParameter", "_m.gup"))
+        .pipe(replace("_m.getViewController", "_m.gvc"))
+        .pipe(replace("_m.getViewModel", "_m.gvm"))
+        .pipe(replace("_m.dispatchEvent", "_m.de"))
+        .pipe(replace("_m.listenToEvent", "_m.le"))
+        .pipe(replace("_m.lazyLoadImages", "_m.lli"))
+        .pipe(replace("_m.lazyLoadElement", "_m.lle"))
         .pipe(concat('bundle.min.js'))
         .pipe(terser())
         .pipe(gulp.dest('public/js'));
@@ -71,6 +107,23 @@ const vendorJs = () => {
 const models = () => {
     return gulp
         .src('js/models/**/*.js')
+        .pipe(replace("dotmin", "_m"))
+        .pipe(replace("_m.ready", "_m.r"))
+        .pipe(replace("_m.load", "_m.l"))
+        .pipe(replace("_m.loadModel", "_m.lm"))
+        .pipe(replace("_m.initRoute", "_m.ir"))
+        .pipe(replace("_m.loadComponent", "_m.lc"))
+        .pipe(replace("_m.initPageComponents", "_m.ipc"))
+        .pipe(replace("_m.initComponent", "_m.ic"))
+        .pipe(replace("_m.getRoute", "_m.gr"))
+        .pipe(replace("_m.getPageName", "_m.gpn"))
+        .pipe(replace("_m.getUrlParameter", "_m.gup"))
+        .pipe(replace("_m.getViewController", "_m.gvc"))
+        .pipe(replace("_m.getViewModel", "_m.gvm"))
+        .pipe(replace("_m.dispatchEvent", "_m.de"))
+        .pipe(replace("_m.listenToEvent", "_m.le"))
+        .pipe(replace("_m.lazyLoadImages", "_m.lli"))
+        .pipe(replace("_m.lazyLoadElement", "_m.lle"))
         .pipe(terser())
         .pipe(rename({
             suffix: '.min'
@@ -87,6 +140,23 @@ const views = () => {
 const viewControllers = () => {
     return gulp
         .src('views/controllers/**/*.js')
+        .pipe(replace("dotmin", "_m"))
+        .pipe(replace("_m.ready", "_m.r"))
+        .pipe(replace("_m.load", "_m.l"))
+        .pipe(replace("_m.loadModel", "_m.lm"))
+        .pipe(replace("_m.initRoute", "_m.ir"))
+        .pipe(replace("_m.loadComponent", "_m.lc"))
+        .pipe(replace("_m.initPageComponents", "_m.ipc"))
+        .pipe(replace("_m.initComponent", "_m.ic"))
+        .pipe(replace("_m.getRoute", "_m.gr"))
+        .pipe(replace("_m.getPageName", "_m.gpn"))
+        .pipe(replace("_m.getUrlParameter", "_m.gup"))
+        .pipe(replace("_m.getViewController", "_m.gvc"))
+        .pipe(replace("_m.getViewModel", "_m.gvm"))
+        .pipe(replace("_m.dispatchEvent", "_m.de"))
+        .pipe(replace("_m.listenToEvent", "_m.le"))
+        .pipe(replace("_m.lazyLoadImages", "_m.lli"))
+        .pipe(replace("_m.lazyLoadElement", "_m.lle"))
         .pipe(terser())
         .pipe(rename({
             suffix: '.min'
@@ -97,6 +167,23 @@ const viewControllers = () => {
 const controllers = () => {
     return gulp
         .src('js/controllers/**/*.js')
+        .pipe(replace("dotmin", "_m"))
+        .pipe(replace("_m.ready", "_m.r"))
+        .pipe(replace("_m.load", "_m.l"))
+        .pipe(replace("_m.loadModel", "_m.lm"))
+        .pipe(replace("_m.initRoute", "_m.ir"))
+        .pipe(replace("_m.loadComponent", "_m.lc"))
+        .pipe(replace("_m.initPageComponents", "_m.ipc"))
+        .pipe(replace("_m.initComponent", "_m.ic"))
+        .pipe(replace("_m.getRoute", "_m.gr"))
+        .pipe(replace("_m.getPageName", "_m.gpn"))
+        .pipe(replace("_m.getUrlParameter", "_m.gup"))
+        .pipe(replace("_m.getViewController", "_m.gvc"))
+        .pipe(replace("_m.getViewModel", "_m.gvm"))
+        .pipe(replace("_m.dispatchEvent", "_m.de"))
+        .pipe(replace("_m.listenToEvent", "_m.le"))
+        .pipe(replace("_m.lazyLoadImages", "_m.lli"))
+        .pipe(replace("_m.lazyLoadElement", "_m.lle"))
         .pipe(terser())
         .pipe(rename({
             suffix: '.min'

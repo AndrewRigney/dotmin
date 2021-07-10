@@ -1,11 +1,11 @@
 //Load model
-_m.lm().then(() => {
+dotmin.lm().then(() => {
     pageModel.greeting += "! :)";
     document.getElementById("welcomeMessage").innerHTML = pageModel.copy;
 
-    _m.lli();
+    dotmin.lazyLoadImages();
 
-    _m.r(() => {
+    dotmin.ready(() => {
         var elems = document.querySelectorAll(".carousel-item.lazy");
         if (elems !== null && elems.length > 0) {
             elems.forEach((elem) => {
@@ -16,15 +16,15 @@ _m.lm().then(() => {
         }
     });
     
-    _m.on("#f_img_001", "click", () => {
-        _m.de("imageClick", { "state":true });
+    dotmin.on("#f_img_001", "click", () => {
+        dotmin.dispatchEvent("imageClick", { "state":true });
     });
 
-    _m.le("imageClick", (evt) => {
+    dotmin.listenToEvent("imageClick", (evt) => {
         document.querySelector("#f_001 h2 span.text-muted").innerHTML = `...Mind blown? ${evt.detail.state}...!!`;
     });
 
-    _m.le("imageClick", () => {
+    dotmin.listenToEvent("imageClick", () => {
         document.querySelector("#f_001 p.lead").innerHTML = "This was updated via custom events and handlers, set up within the page controller. In a real app, this can broadcast across components. See how the menu changed?";
     });
 });

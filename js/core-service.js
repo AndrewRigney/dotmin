@@ -5,9 +5,9 @@ const buildTargets = {
 };
 
 const config = {
-    "folder_models": "js/models/",
-    "suffix_models": "-model.min.js",
-    "view_model_object": "Model",
+    "folderdotminodels": "js/models/",
+    "suffixdotminodels": "-model.min.js",
+    "viewdotminodel_object": "Model",
     "folder_views": "views/controllers/",
     "suffix_views": "-view-controller.min.js",
     "folder_controllers": "js/controllers/",
@@ -17,14 +17,14 @@ const config = {
 };
 
 //dotmin object
-const _m = {
+const dotmin = {
     //ready(function: callback)
-    r: (callback) => {
+    ready: (callback) => {
         (document.readyState != "loading") ? callback() : document.addEventListener("DOMContentLoaded", callback);
     },
 
     //load(string: url, function: callback)
-    l: (url, callback) => {
+    load: (url, callback) => {
         fetch(url)
             .then(data => data.text()).then(data => {
                 eval(data);
@@ -35,8 +35,8 @@ const _m = {
     },
 
     //loadModel(string: url)
-    lm: () => {
-        var url = config.folder_models + _m.gr().name + config.suffix_models;
+    loadModel: () => {
+        var url = config.folderdotminodels + dotmin.gr().name + config.suffixdotminodels;
         return new Promise((resolve, reject) => {
             let s = document.createElement("script");
             s.onload = () => { resolve(); };
@@ -47,13 +47,13 @@ const _m = {
     },
 
     //initRoute(string: url, function: callback)
-    ir: (url, callback) => {
-        _m.l(url, callback);
-        _m.ipc();
+    initRoute: (url, callback) => {
+        dotmin.load(url, callback);
+        dotmin.initPageComponents();
     },
 
     //loadComponent(string: name)
-    lc: (name) => {
+    loadComponent: (name) => {
         var component = app.components.find(function (c) { return c.name == name; });
 
         fetch("/views/" + component.path + name + ".html")
@@ -63,22 +63,22 @@ const _m = {
                 console.error(error);
             });
 
-        _m.l(config.folder_views + component.path + name + config.suffix_views);
+        dotmin.load(config.folder_views + component.path + name + config.suffix_views);
     },
 
     //initPageComponents
-    ipc: () => {
+    initPageComponents: () => {
         let c = document.getElementsByClassName("component");
-        (c !== null) ? Array.from(c).forEach(element => { _m.lc(element.localName); }) : null;
+        (c !== null) ? Array.from(c).forEach(element => { dotmin.lc(element.localName); }) : null;
     },
 
     //initComponent(string: url, function: callback)
-    ic: (url, callback) => {
-        _m.l(url, callback);
+    initComponent: (url, callback) => {
+        dotmin.load(url, callback);
     },
 
     //getRoute()
-    gr: () => {
+    getRoute: () => {
         var location = window.location.href.toString();
         var currentRoute = app.routes.find((c) => { return c.name === config.default_route; });
 
@@ -90,7 +90,7 @@ const _m = {
     },
 
     //getPageName()
-    gpn: () => {
+    getPageName: () => {
         var locations = window.location.href.toString().split("/");
         var name = locations[locations.length - 1];
 
@@ -102,14 +102,14 @@ const _m = {
     },
 
     //getUrlParameter(string: name)
-    gup: (name) => {
+    getUrlParameter: (name) => {
         var parameters = new URLSearchParams(window.location.search);
 
         return (parameters.has(name) ? parameters.get(name) : null);
     },
 
     //getViewController(string: name)
-    gvc: (name) => {
+    getViewController: (name) => {
         var n = name.split("-");
         name = n[0];
         n.forEach((element, index) => {
@@ -122,7 +122,7 @@ const _m = {
     },
 
     //getViewModel(string: name)
-    gvm: (name) => {
+    getViewModel: (name) => {
         var n = name.split("-");
         name = n[0];
         n.forEach((element, index) => {
@@ -131,18 +131,16 @@ const _m = {
             }
         });
 
-        return name += config.view_model_object;
+        return name += config.viewdotminodel_object;
     },
 
-    //dispatch custom event
-    //de(string: name, object: details)
-    de: (name, details) => {
+    //dispatchEvent(string: name, object: details)
+    dispatchEvent: (name, details) => {
         document.dispatchEvent(new CustomEvent(name, { detail: details }));
     },
 
-    //listen for dispatched event
-    //le(string: name, function: callback)
-    le: (name, callback) => {
+    //listenToEvent(string: name, function: callback)
+    listenToEvent: (name, callback) => {
         document.addEventListener(name, (evt) => {
             callback(evt);
         })
@@ -164,7 +162,7 @@ const _m = {
 
     //lazy load images with the IntersectionObserver
     //add class 'lazy' to an img element
-    lli: () => {
+    lazyLoadImages: () => {
         const targets = document.querySelectorAll("img.lazy");
 
         if (!!window.IntersectionObserver) {
@@ -196,7 +194,7 @@ const _m = {
     //add data-lazytriggerfor attribute to an element
     //when the trigger element is scrolled in to view, the target
     //element is then loaded
-    lle: () => {
+    lazyLoadElement: () => {
         const targets = document.querySelectorAll(".lazy-trigger");
 
         if (!!window.IntersectionObserver) {

@@ -11,10 +11,10 @@
         darkThemeSelected ? document.getElementById(darkLabel).innerHTML = darkLang : document.getElementById(darkLabel).innerHTML = lightLang;
     };
 
-    _m.r(() => {
+    dotmin.ready(() => {
         if (darkMode) {
             initTheme();
-            _m.on("#darkMode", "change", () => {
+            dotmin.on("#darkMode", "change", () => {
                 if (darkMode.checked) {
                     document.body.setAttribute('data-theme', 'dark');
                     localStorage.setItem('darkMode', 'dark');

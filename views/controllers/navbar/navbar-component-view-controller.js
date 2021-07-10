@@ -1,5 +1,5 @@
 (() => {
-    var page = _m.gr();
+    var page = dotmin.getRoute();
 
     var navItemLink = document.querySelector("ul.navbar-nav li a");
     if (navItemLink !== null) {
@@ -15,7 +15,7 @@
         });
     }
 
-    _m.le("imageClick", () => {
-        document.querySelector("#nav_main_002").textContent = "Whoa!";
+    dotmin.listenToEvent("imageClick", () => {
+        document.querySelector("#navdotminain_002").textContent = "Whoa!";
     });
 })();

@@ -16,8 +16,8 @@ const app = {
 };
 
 //App controller
-_m.r(() => {
-    _m.ir(config.folder_controllers + _m.gr().controller + config.suffix_controllers);
+dotmin.ready(() => {
+    dotmin.initRoute(config.folder_controllers + dotmin.getRoute().controller + config.suffix_controllers);
     if (app.target === buildTargets.PROD) {
         //noOp
     }
