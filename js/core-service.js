@@ -36,7 +36,7 @@ const dotmin = {
 
     //loadModel(string: url)
     loadModel: () => {
-        var url = config.folderdotminodels + dotmin.gr().name + config.suffixdotminodels;
+        var url = config.folderdotminodels + dotmin.getRoute().name + config.suffixdotminodels;
         return new Promise((resolve, reject) => {
             let s = document.createElement("script");
             s.onload = () => { resolve(); };

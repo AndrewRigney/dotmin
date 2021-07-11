@@ -1,4 +1,4 @@
-let repeater = document.getElementById("countryCards");
+let repeater = document.querySelector("#countryCards");
 
 fetch("https://restcountries.eu/rest/v2/all")
     .then(response => response.json())

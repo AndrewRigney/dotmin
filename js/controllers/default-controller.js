@@ -1,7 +1,7 @@
 //Load model
-dotmin.lm().then(() => {
+dotmin.loadModel().then(() => {
     pageModel.greeting += "! :)";
-    document.getElementById("welcomeMessage").innerHTML = pageModel.copy;
+    document.querySelector("#welcomeMessage").innerHTML = pageModel.copy;
 
     dotmin.lazyLoadImages();
 
@@ -32,7 +32,7 @@ dotmin.lm().then(() => {
 fetch("https://api.ipify.org/?format=json")
     .then(response => response.json())
     .then(data => {
-        document.getElementById("ipAddress").innerHTML = data.ip
+        document.querySelector("#ipAddress").innerHTML = data.ip
     }).catch(error => {
         console.error(error);
     });
